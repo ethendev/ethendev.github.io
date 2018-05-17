@@ -13,26 +13,10 @@ If you like this blog theme, please give me a star.
 
 * [Preview](#preview)
 * [Page Details](#page-details)
-    * [Home](#home)
-    * [Archives](#archives)
-    * [Categories](#categories)
-    * [Tags](#tags)
-    * [About](#about)
-    * [Comments](#comments)
-    * [Post Contents](#post-contents)
-    * [Code Highlight](#code-highlight)
-    * [Light Shadow](#light-shadow)
-    * [Mobile Adaptation](#mobile-adaptation)
-    * [Footer](#footer)
-    * [Statistical Analysis](#statistical-analysis)
 * [Usage](#usage)
     * [1. Install ruby and jekyll environment](#1-install-ruby-and-jekyll-environment)
-    * [2. Copy theme code](#2-copy-theme-code)
+    * [2. Clone my code](#2-clone-my-code)
     * [3. Change parameter](#3-change-parameter)
-        * [Basic info](#basic-info)
-        * [Link info](#link-info)
-        * [Comments info](#comments-info)
-        * [Statistical analysis info](#statistical-analysis-info)
     * [4. Write post](#4-write-post)
     * [5. Local launch](#5-local-launch)
     * [6. Push to GitHub](#6-push-to-github)
@@ -42,7 +26,7 @@ If you like this blog theme, please give me a star.
 
 First, take a look at the blog page.
 
-![index](http://ww3.sinaimg.cn/large/7011d6cfjw1f3bdli86awj211k0oyqen.jpg)
+![index](/img/post.png)
 
 
 ## Usage
@@ -72,9 +56,8 @@ git clone https://github.com/ethendev/ethendev.github.io.git
 
 Mainly change the parameters at file `_config.yml` and use your own `favicon.ico`.
 
-#### Basic info
 
-Shows at site header part.
+Change your title and url.
 
 ```yml
 # Site settings
@@ -84,16 +67,13 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://ethendev.github.io/"
 ```
 
-#### Comments info
 
-Get your own `short_name`:
-
-Visit https://disqus.com/ or http://duoshuo.com/. And follow the prompts at the site.
+If you want to comment,visit https://disqus.com/ or http://duoshuo.com/ to get your own `short_name`, And follow the prompts at the site.
 
 ```yml
 # comments
 # two ways to comment, only choose one, and use your own short name
-duoshuo_shortname: #hygblog
+duoshuo_shortname: XXXX
 disqus_shortname: xxxx
 ```
 
