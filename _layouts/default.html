@@ -1,17 +1,26 @@
 <!DOCTYPE html>
-<html lang="zh_cn">
+<html>
+
   {% include head.html %}
-<body>
-<!-- 导航菜单 -->
-  {% include navbar.html%}
 
-  <div class="container page-content">
-    {{content}}
-  </div>
+  <body>
 
-  {% include footer.html%}
+    {% include header.html %}
 
-  {% include script.html %}
-  {% include baidu-analysis.html %}
-</body>
+        {{ content }}
+
+    {% include footer.html %}
+    {% include backToTop.html %}
+    <script src="{{ " /js/main.js " | prepend: site.baseurl }}" charset="utf-8"></script>
+    <script src="{{ " /js/smooth-scroll.min.js " | prepend: site.baseurl }}" charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src="{{ " /js/scroll.min.js " | prepend: site.baseurl }}" charset="utf-8"></script> -->
+  </body>
+
 </html>
