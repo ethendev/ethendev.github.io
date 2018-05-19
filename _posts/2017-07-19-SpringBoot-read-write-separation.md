@@ -4,12 +4,17 @@ title: SpringBoot中数据源读写分离配置
 tags:  [SpringBoot,读写分离, DB]
 categories: [SpringBoot]
 author: Ethen
-excerpt: "开发中常用到主从数据库来提高系统的性能。怎么样才能方便的实现主从读写分离呢"
 ---
+
+* content
+{:toc}
 
 开发中常用到主从数据库来提高系统的性能。怎么样才能方便的实现主从读写分离呢？通过事务注解里面的可读属性readOnly的取值来自动切换数据源, 从而实现数据库读写分离。
 
-1.主备数据源配置
+
+
+
+### 主备数据源配置
 ```
 @Configuration
 @PropertySources({@PropertySource("classpath:palette.properties")})
@@ -103,7 +108,7 @@ public class DataSourceConfig {
 }
 ```
 
-2.数据源动态切换
+### 数据源动态切换
 ```
 @Slf4j
 public class ReplicationRoutingDataSource extends AbstractRoutingDataSource {
