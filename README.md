@@ -1,11 +1,5 @@
 # About this Jekyll Blog Theme
 
-[![GitHub stars](https://img.shields.io/github/stars/ethendev/ethendev.github.io.svg)](https://github.com/ethendev/ethendev.github.io/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/ethendev/ethendev.github.io.svg)](https://github.com/ethendev/ethendev.github.io/network)
-[![GitHub issues](https://img.shields.io/github/issues/ethendev/ethendev.github.io.svg)](https://github.com/ethendev/ethendev.github.io/issues)
-[![GitHub release](https://img.shields.io/github/release/ethendev/ethendev.github.io.svg)](https://github.com/ethendev/ethendev.github.io/releases)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/ethendev/ethendev.github.io/master/LICENSE)
-
 
 If you like this blog theme, please give me a star.
 
@@ -80,7 +74,7 @@ disqus_shortname: xxxx
 When you done, you can also see the comments info at disqus or duoshuo admin console.
 
 
-### Statistic and Analysis
+Statistic and Analysis
 
 This theme supports Google Analytics and Baidu Statistics，visit https://www.google.com/analytics/ or http://tongji.baidu.com/, get your own id.
 
