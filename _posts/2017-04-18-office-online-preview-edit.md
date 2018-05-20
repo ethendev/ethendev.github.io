@@ -156,8 +156,8 @@ http://[owas.domain]/we/wordeditorframe.aspx?WOPISrc=http://[WopiHost.domain]:80
 
 
 
-代码已上传github，有用的话记得start一下啊^__^。
-地址 https://github.com/ethendev/wopihost
+代码已上传github，有用的话记得start一下啊^__^。  
+[Github](https://github.com/ethendev/wopihost)
 
 
 
