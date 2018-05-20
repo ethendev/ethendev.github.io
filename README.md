@@ -6,14 +6,12 @@ If you like this blog theme, please give me a star.
 ## Content
 
 * [Preview](#preview)
-* [Page Details](#page-details)
 * [Usage](#usage)
     * [1. Install ruby and jekyll environment](#1-install-ruby-and-jekyll-environment)
     * [2. Clone my code](#2-clone-my-code)
     * [3. Change parameter](#3-change-parameter)
     * [4. Write post](#4-write-post)
     * [5. Local launch](#5-local-launch)
-    * [6. Push to GitHub](#6-push-to-github)
 * [License](#license)
 
 ## Preview
@@ -62,16 +60,13 @@ url: "https://ethendev.github.io/"
 ```
 
 
-If you want to comment,visit https://disqus.com/ or http://duoshuo.com/ to get your own `short_name`, And follow the prompts at the site.
+If you want to comment, visit https://disqus.com/ or https://livere.com/ to get your own name, and replace the below value.
 
 ```yml
 # comments
-# two ways to comment, only choose one, and use your own short name
-duoshuo_shortname: XXXX
+livere_uid: XXXX
 disqus_shortname: xxxx
 ```
-
-When you done, you can also see the comments info at disqus or duoshuo admin console.
 
 
 Statistic and Analysis
@@ -101,7 +96,7 @@ mathjax: true
 ---
 ```
 
-These follow code is for making contents.
+These follow code is for generating table of contents.
 ```
 * content
 {:toc}
@@ -136,10 +131,6 @@ Server running... press ctrl-c to stop.
 ```
 
 Visit http://127.0.0.1:4000/ to see your blog!!!
-
-### 6. Push to GitHub
-
-If there is nothing wrong, push your code to github!
 
 
 ## License

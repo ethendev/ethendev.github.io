@@ -17,13 +17,13 @@ permalink: /:year/:month/:day/:title/
 github_username: ethendev
 
 # comments
-# two ways to comment, only choose one, and use your own short name
-#duoshuo_shortname: 
-#disqus_shortname: 
+# choose one of them to comment
+# disqus_shortname: 
+livere_uid: Silo
 
 # statistic analysis
 # peplace your own ID
-#baidu_tongji_id: xxxxxx
+# baidu_tongji_id: xxxxxx
 google_analytics_id: UA-119387651-1 # google id
 
 # Build settings
