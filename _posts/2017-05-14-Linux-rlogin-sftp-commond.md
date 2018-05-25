@@ -1,0 +1,29 @@
+---
+layout: post
+title: Linux使用
+tags:  [Linux, sftp, rsh]
+categories: [Linux]
+author: Ethen
+---
+
+* content
+{:toc}
+
+Linux中使用rsh远程登陆或者sftp的时候，想要在登陆命令后面执行一段命令，可以使用下面的方式。
+
+
+
+
+### sftp
+使用案例：
+```
+sftp user@servedr <<EOF
+    ls
+    put test.txt
+EOF
+```
+
+### rsh
+```
+rsh -l irteam $HOST "cd apps/apache-tomcat-7.0.78/bin; ./deploy.sh"
+```
