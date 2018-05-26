@@ -1,9 +1,8 @@
 ---
 layout: post
 title: SpringBoot中数据源读写分离配置
-tags:  [SpringBoot,读写分离, DB]
+tags:  [SpringBoot, 读写分离, DB]
 categories: [SpringBoot]
-author: Ethen
 ---
 
 * content

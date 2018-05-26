@@ -82,17 +82,21 @@ google_analytics_id: UA-xxxxxxxx
 
 ### 4. Write post
 
-You can write posts at folder `_posts`. Before you start posting, you should declare layout、title、date、categories、tags、author(optional) info、mathjax(optional，click [here](https://www.mathjax.org/) for more detail about `Mathjax`).
+To create a new post, all you need to do is create a file in the _posts directory. How you name files in this folder is important. Jekyll requires blog post files to be named according to the following format:
+```
+yyyy-MM-dd-title.md
+```
+
+Before you start posting, you should declare layout、title、categories、tags、author(optional) info.
+
 
 ```
 ---
 layout: post
-title:  "yout title"
-date:   2016-03-12 11:40:18 +0800
-categories: jekyll
-tags: jekyll
-author: ethendev
-mathjax: true
+title: SpringBoot中数据源读写分离配置
+tags:  [SpringBoot, 读写分离, DB]
+categories: [SpringBoot]
+
 ---
 ```
 
@@ -102,18 +106,28 @@ These follow code is for generating table of contents.
 {:toc}
 ```
 
-You can use 4 wraps as a excerpt separator. The words before separator as excerpt show in the index page. When you enter the post page, you can read full article.
 
-The wraps config is in the file `_config.yml`, as follows:
+Each post automatically takes the first block of text, from the beginning of the content to the first occurrence of excerpt_separator, and sets it in the post’s excerpt. 
+
+You can set `excerpt_separator` in the `_config.yml`, as follows:
 
 ```yml
 # excerpt
 excerpt_separator: "\n\n\n\n"
 ```
 
-You should use markdown syntax to write article, just like write readme in github.
+If you don’t like the automatically-generated post excerpt, it can be explicitly overridden by adding an excerpt value to your post’s YAML Front Matter. 
 
-You can use 3 \`\`\` to write code block.
+```
+---
+layout: post
+title: 
+tags:  
+categories: 
+author: Ethen
+excerpt: your excerpt
+---
+```
 
 ### 5. Local launch
 
@@ -130,7 +144,7 @@ Server address: http://127.0.0.1:4000/
 Server running... press ctrl-c to stop.
 ```
 
-Visit http://127.0.0.1:4000/ to see your blog!!!
+Visit http://127.0.0.1:4000/ to see your blog.
 
 
 ## License

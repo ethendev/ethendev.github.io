@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Linux使用
+title: Linux sftp、rlogin命令中执行一段脚本的方法
 tags:  [Linux, sftp, rsh]
 categories: [Linux]
-author: Ethen
+keywords: Linux,sftp,rsh
 ---
 
 * content
