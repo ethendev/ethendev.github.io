@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Java序列化时Long型数值在JS中不准确
-tags:  [Java,序列化,Long]
+tags:  [Java, 序列化, Long]
 categories: [Java]
-author: Ethen
+keywords: Java,序列化,Long
 ---
 
 * content
