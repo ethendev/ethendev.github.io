@@ -3,7 +3,8 @@
         color: #333;
         transition: 0.5s ease;
         &:hover {
-            color: #0aa284;
+            //color: #0aa284;
+            text-decoration:underline
         }
     }
     .left {
@@ -23,12 +24,14 @@
                     margin-bottom: 15px;
                     overflow: hidden;
                     .label-card {
+                        color: #AAA;
+                        font-size: 14px;
                         float: left;
                         margin-right: 15px;
                         i {
                             padding-right: 0;
                             margin-right: 3px;
-                            color: #6b6a6a;
+                            //color: #6b6a6a;
                         }
                     }
                     .categories {
@@ -47,9 +50,9 @@
                     }
                 }
                 .read-all {
-                    font-size: 14px;
+                    font-size: 16px;
                     a {
-                        color: #778ab0;
+                        //color: #778ab0;
                         transition: 0.2s ease;
                         &:hover {
                             color: #0aa284;

@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Jekyll 笔记"
-categories: Jekyll
-tags:  Jekyll
+title: Jekyll笔记
+categories: [Jekyll]
+tags: [Jekyll]
 keywords: Jekyll,语法
 ---
 
@@ -10,7 +10,7 @@ keywords: Jekyll,语法
 {:toc}
 
 
-## 目录结构
+### 目录结构
 Jekyll 的核心其实是一个文本转换引擎。它的概念其实就是： 你用你最喜欢的标记语言来写文章，可以是 Markdown，也可以是 Textile,或者就是简单的 HTML, 然后 Jekyll 就会帮你套入一个或一系列的布局中。在整个过程中你可以设置URL路径, 你的文本在布局中的显示样式等等。这些都可以通过纯文本编辑来实现，最终生成的静态页面就是你的成品了。
 
 
@@ -53,7 +53,7 @@ Jekyll 的核心其实是一个文本转换引擎。它的概念其实就是： 
 | Other Files/Folders | 其他一些未被提及的目录和文件如  css 还有 images 文件夹， favicon.ico 等文件都将被完全拷贝到生成的 site 中。 这里有一些使用 Jekyll 的站点，如果你感兴趣就来看看吧。 |
 
 
-## 基本用法
+### 基本用法
 安装了 Jekyll 的 Gem 包之后，就可以在命令行中使用 Jekyll 命令了。有以下这些用法：
 ```
 jekyll build
@@ -84,8 +84,8 @@ jekyll serve --watch
 # => 和`jekyll serve`相同，但是会查看变更并且自动再生成。
 ```
 
-## 模板语法
-### 使用变量
+### 模板语法
+#### 使用变量
 
 所有的变量是都一个树节点, 比如模板中定义的头部变量, 需要使用下面的语法获得
 
@@ -98,7 +98,7 @@ page 是当前页面的根节点。其中全局根结点有
 * content 模板中,用于引入子节点的内容
 * paginator 分页信息
 
-### site 下的变量
+#### site 下的变量
 site.time 运行 jekyll 的时间
 site.pages 所有页面
 site.posts 所有文章
@@ -112,7 +112,7 @@ site.categories 所有的 categorie
 site.tags 所有的 tag
 site.[CONFIGURATION_DATA] 自定义变量
 
-### page 下的变量
+#### page 下的变量
 page.content 页面的内容
 page.title 标题
 page.excerpt 摘要
@@ -125,7 +125,7 @@ page.path 源代码位置
 page.next 下一篇文章
 page.previous 上一篇文章
 
-### paginator 下的变量
+#### paginator 下的变量
 paginator.per_page 每一页的数量
 paginator.posts 这一页的数量
 paginator.total_posts 所有文章的数量
@@ -136,5 +136,5 @@ paginator.previous_page_path 上一页的路径
 paginator.next_page 下一页的页数
 paginator.next_page_path 下一页的路径
 
-### Liquid
+#### Liquid
 jekyll使用Liquid语言，Liquid 是一门开源的模板语言。[Liquid 模板语言中文文档](https://liquid.bootcss.com/)
