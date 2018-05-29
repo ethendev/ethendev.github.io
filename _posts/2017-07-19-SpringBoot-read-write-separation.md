@@ -14,11 +14,11 @@ categories: [SpringBoot]
 
 
 ### 主备数据源配置
-```
+```java
 @Configuration
-@PropertySources({@PropertySource("classpath:palette.properties")})
+@PropertySources({@PropertySource("classpath:travel.properties")})
 @EnableTransactionManagement
-@MapperScan(basePackages = "com.naver.palette", annotationClass = Mapper.class, sqlSessionFactoryRef = "sqlSessionFactory")
+@MapperScan(basePackages = "com.ethen.travel", annotationClass = Mapper.class, sqlSessionFactoryRef = "sqlSessionFactory")
 public class DataSourceConfig {
  
     @Autowired
@@ -92,7 +92,7 @@ public class DataSourceConfig {
         sqlFactory.setDataSource(dataSource());
  
         sqlFactory.setConfigLocation(new ClassPathResource("mybatis-config.xml"));
-        sqlFactory.setTypeAliasesPackage("com.naver.palette");
+        sqlFactory.setTypeAliasesPackage("com.ethen.travel");
         return sqlFactory.getObject();
     }
  
@@ -108,7 +108,7 @@ public class DataSourceConfig {
 ```
 
 ### 数据源动态切换
-```
+```java
 @Slf4j
 public class ReplicationRoutingDataSource extends AbstractRoutingDataSource {
  

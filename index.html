@@ -19,13 +19,8 @@ layout: default
                         {% endif %}
                     </div> -->
                     <div class="label-card">
-                        {% if page.meta %}<i class="fa fa-key"></i>{{ page.meta }}  {% endif %}
-                    </div>
-
-                    <div class="label-card">
                     {% include category.html %}
                     </div>
-
                     <div class="label-card">
                     {% include tag.html %}
                     </div>
@@ -34,7 +29,7 @@ layout: default
                     {{post.excerpt}}
                 </div>
                 <div class="read-all">
-                    <a  href="{{ post.url | prepend: site.baseurl }}"><i class="fa fa-newspaper-o"></i>Read All</a>
+                    <a href="{{ post.url | prepend: site.baseurl }}">Read All <i class="fa fa-angle-double-right"></i></a>
                 </div>
                 <hr>
               </li>

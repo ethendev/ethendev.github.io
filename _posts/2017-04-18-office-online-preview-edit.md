@@ -155,12 +155,6 @@ http://[owas.domain]/we/wordeditorframe.aspx?WOPISrc=http://[WopiHost.domain]:80
 ![这里写图片描述](http://img.blog.csdn.net/20170418172534332?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveXVmZWl5YW5saXU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 
-
-代码已上传github，有用的话记得start一下啊^__^。  
-[Github](https://github.com/ethendev/wopihost)
-
-
-
 > **注意：**web app上没有保存按钮，是自动保存的****。
 
 ---------
@@ -173,3 +167,5 @@ Office Online Server下载地址
 >[批量许可服务中心 (VLSC)](https://www.microsoft.com/Licensing/servicecenter/default.aspx)  
 [备用下载地址](http://www.0daydown.com/10/630107.html)
 >
+
+代码已上传[Github](https://github.com/ethendev/wopihost)，有用的话记得start一下啊^__^。  

@@ -96,7 +96,7 @@ layout: post
 title: SpringBoot中数据源读写分离配置
 tags:  [SpringBoot, 读写分离, DB]
 categories: [SpringBoot]
-
+keywords: SpringBoot,读写分离,DB
 ---
 ```
 
@@ -124,7 +124,6 @@ layout: post
 title: 
 tags:  
 categories: 
-author: Ethen
 excerpt: your excerpt
 ---
 ```
