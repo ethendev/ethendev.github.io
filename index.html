@@ -19,10 +19,7 @@ layout: default
                         {% endif %}
                     </div> -->
                     <div class="label-card">
-                    {% include category.html %}
-                    </div>
-                    <div class="label-card">
-                    {% include tag.html %}
+                        <i class="fa fa-tags"></i>{{ post.tags | join: " "}}
                     </div>
                 </div>
                 <div class="excerpt">
