@@ -2,9 +2,9 @@
 
     <hr>
     <div class="wrapper">
-    <!--<p>
-            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-        </p> -->
+        <p style="display: none;">
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次
+        </p>
 
         <p class="power">
             <span>
@@ -13,7 +13,10 @@
             <span>
                 {% if site.github_username %}
                     <a href="https://github.com/{{site.github_username}}" title="GitHub"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a> 
-                {% endif %} 
+                {% endif %}
+            </span>
+            <span>
+                <a href="/feed.xml" title="RSS"><i class="fa fa-rss-square fa-2x"></i></a>
             </span>
         </p>
     </div>
