@@ -9,7 +9,7 @@ keywords: SpringBoot,跨域
 * content
 {:toc}
 
-项目中经常会遇到前后端分离的情况，分离之后会碰到跨域问题，前段无法访问后端的接口。可以通过代码的方式解决跨域，如果使用tomcat的话也可以通过修改配置文件web.xml实现。
+项目中经常会遇到前后端分离的情况，分离之后会碰到跨域问题，前端无法访问后端的接口。可以通过如下3种方式解决跨域问题。
 
 
 
@@ -47,39 +47,26 @@ public class CorsFilter implements Filter {
 }
 ```
 
+### Controller方法CORS配置
+```
+@CrossOrigin(origins = "*")
+@GetMapping("/getAll")
+public List<User> getAll() {
+    return mapper.getList();
+}
+```
 
-### 修改tomcat配置文件实现
-```xml
-<filter>
-  <filter-name>CorsFilter</filter-name>
-  <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
-  <init-param>
-    <param-name>cors.allowed.origins</param-name>
-    <param-value>*</param-value>
-  </init-param>
-  <init-param>
-    <param-name>cors.allowed.methods</param-name>
-    <param-value>GET,POST,HEAD,OPTIONS,PUT</param-value>
-  </init-param>
-  <init-param>
-    <param-name>cors.allowed.headers</param-name>
-    <param-value>Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers</param-value>
-  </init-param>
-  <init-param>
-    <param-name>cors.exposed.headers</param-name>
-    <param-value>Access-Control-Allow-Origin,Access-Control-Allow-Credentials</param-value>
-  </init-param>
-  <init-param>
-    <param-name>cors.support.credentials</param-name>
-    <param-value>true</param-value>
-  </init-param>
-  <init-param>
-    <param-name>cors.preflight.maxage</param-name>
-    <param-value>10</param-value>
-  </init-param>
-</filter>
-<filter-mapping>
-  <filter-name>CorsFilter</filter-name>
-  <url-pattern>/*</url-pattern>
-</filter-mapping>
+### WebMvc实现全局CORS配置
+```java
+@Configuration
+public class WebMvcConfig extends WebMvcConfigurerAdapter {
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowCredentials(true)
+                .allowedHeaders("*")
+                .allowedOrigins("*")
+                .allowedMethods("*");
+    }
+}
 ```
