@@ -1,0 +1,13 @@
+User-agent: Googlebot
+Disallow: /category/
+Disallow: /tag/
+Disallow: /about/
+
+User-agent: Bingbot
+Disallow: /category/
+Disallow: /tag/
+Disallow: /about/
+
+User-agent: *
+Disallow: .png$
+Disallow: /

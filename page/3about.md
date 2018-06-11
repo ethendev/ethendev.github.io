@@ -11,13 +11,11 @@ type: page
 
 ## 关于我
 
-就职于NHN，后端开发工程师。
-
-喜欢运动、旅游。
+building...
 
 ## 联系我
-* GitHub：[ethendev](https://github.com/ethendev)
-* email：eW54d2NoeUAxMjYuY29t
+
+building...
 
 
 ## Comments
