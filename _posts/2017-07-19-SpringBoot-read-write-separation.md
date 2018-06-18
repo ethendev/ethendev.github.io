@@ -14,7 +14,7 @@ categories: [SpringBoot]
 
 
 ### 主备数据源配置
-```java
+```
 @Configuration
 @PropertySources({@PropertySource("classpath:travel.properties")})
 @EnableTransactionManagement
@@ -108,7 +108,7 @@ public class DataSourceConfig {
 ```
 
 ### 数据源动态切换
-```java
+```
 @Slf4j
 public class ReplicationRoutingDataSource extends AbstractRoutingDataSource {
  

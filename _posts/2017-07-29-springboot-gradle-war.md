@@ -35,7 +35,7 @@ dependencies {
 
 ### 二、主类继承SpringBootServletInitializer，重写configure方法
 
-```java
+```
 @SpringBootApplication  
 public class GradletestApplication extends SpringBootServletInitializer {  
   

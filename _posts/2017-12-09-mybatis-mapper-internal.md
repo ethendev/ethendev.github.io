@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Mybatis Mapper内部组成
-tags:  [java, Mybatis,Mapper]
-categories: [java]
-keywords: java,Mybatis,Mapper
+title: Mybatis之Mapper内部组成
+tags:  [Java, Mybatis]
+categories: [Java, Mybatis]
+keywords: Java,Mybatis,Mapper
 ---
 
 * content
@@ -154,7 +154,7 @@ public class BoundSql {
 
 #### 参数传递
 简单回顾一下Mapper接口的参数设置方式
-```java
+```
 @Mapper
 public interface UserMapper {
     UserVo getUserById(String id);
@@ -165,7 +165,7 @@ public interface UserMapper {
 }
 ```
 
-```xml
+```
 <select id="getListByPage" resultType="com.test.user.UserVo">
     SELECT user_id userId, nick_name nickName, sex FROM user where sex = #{user.sex}
 </select>

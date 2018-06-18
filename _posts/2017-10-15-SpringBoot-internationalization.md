@@ -16,7 +16,7 @@ keywords: SpringBoot,国际化
 
 ### LocaleResolver
 为了让我们的应用程序能够确定当前正在使用的语言环境，我们需要在自己的WebMvcConfig类中添加一个LocaleResolver bean：
-```java
+```
     @Bean
     public LocaleResolver localeResolver() {
         CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();
@@ -32,7 +32,7 @@ LocaleResolver接口能根据会话，Cookie，Accept-Language头或固定值确
 
 ### LocaleChangeInterceptor
 接下来，我们需要添加一个拦截器bean，该bean将根据Cookie中的lang的值切换到新的区域设置：
-```java
+```
 @Bean
 public LocaleChangeInterceptor localeChangeInterceptor() {
     LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
@@ -42,7 +42,7 @@ public LocaleChangeInterceptor localeChangeInterceptor() {
 ```
 
 这个bean需要被添加到应用程序的拦截器注册表中。
-```java
+```
 @Override
 public void addInterceptors(InterceptorRegistry registry) {
     registry.addInterceptor(localeChangeInterceptor());
@@ -75,7 +75,7 @@ lang.change=更换语言
 
 ### ReloadableResourceBundleMessageSource
 使用MessageSource来管理国际资源文件
-```java
+```
 @Bean
 public ReloadableResourceBundleMessageSource messageSource() {
     ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
@@ -88,7 +88,7 @@ public ReloadableResourceBundleMessageSource messageSource() {
 ### 测试
 写一个controller和一个简单的HTML页面，来测试结果：
 
-```java
+```
 @Controller
 public class TestController {
 
@@ -100,7 +100,7 @@ public class TestController {
 ```
 
 使用thymeleaf写一个简单网页
-```html
+```
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
