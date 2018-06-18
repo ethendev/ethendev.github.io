@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  JVM中对象的创建过程
-categories: [JVM]
+categories: [JVM, Java]
 tags:  [JVM, 对象, 创建]
 ---
 

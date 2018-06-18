@@ -15,7 +15,7 @@ keywords: SpringBoot,跨域
 
 
 ### 过滤器实现
-```java
+```
 public class CorsFilter implements Filter {
 
     @Override
@@ -57,7 +57,7 @@ public List<User> getAll() {
 ```
 
 ### WebMvc实现全局CORS配置
-```java
+```
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Override

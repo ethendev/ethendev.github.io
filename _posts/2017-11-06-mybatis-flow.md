@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Mybatis运行过程简介
-tags:  [java, Mybatis]
-categories: [java]
-keywords: java,Mybatis
+tags:  [Java, Mybatis]
+categories: [Java, Mybatis]
+keywords: Java,Mybatis
 excerpt: MyBatis的运行过程主要分为两步，第一步读取配置文件缓存到Configuration对象，用来创建SqlSessionFactory，第二步是获取SqlSession以及使用SqlSession进行数据库操作。
 ---
 
@@ -41,7 +41,7 @@ MyBatis的运行过程主要分为两步，第一步读取配置文件缓存到C
 
 
 下面是MapperProxyFactory.java的部分代码实现：
-```java
+```
 public class MapperProxyFactory<T> {
     ...
     protected T newInstance(MapperProxy<T> mapperProxy) {
@@ -59,7 +59,7 @@ public class MapperProxyFactory<T> {
 
 
 接下里再看看MapperProxy的代码：
-```java
+```
 public class MapperProxy<T> implements InvocationHandler, Serializable {
     ...
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
@@ -83,7 +83,7 @@ public class MapperProxy<T> implements InvocationHandler, Serializable {
 一旦mapper是代理对象，就会运行到invoke方法中。invoke首先判断它是否是一个类，因为Mapper是接口，会判断失败，那么就会生成MapperMethod对象，通过cachedMapperMethod方法对其初始化，然后执行execute方法。
 
 
-```java
+```
 public class MapperMethod {
     ...
     public Object execute(SqlSession sqlSession, Object[] args) {
