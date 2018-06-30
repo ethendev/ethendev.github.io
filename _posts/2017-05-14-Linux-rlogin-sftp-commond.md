@@ -6,8 +6,6 @@ categories: [Linux]
 keywords: Linux,sftp,rsh
 ---
 
-* content
-{:toc}
 
 Linux中使用rsh远程登陆或者sftp的时候，想要在登陆命令后面执行一段命令，可以使用下面的方式。
 

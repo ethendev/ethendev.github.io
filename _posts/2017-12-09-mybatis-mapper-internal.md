@@ -6,8 +6,6 @@ categories: [Java, Mybatis]
 keywords: Java,Mybatis,Mapper
 ---
 
-* content
-{:toc}
 
 上一篇文章介绍了MyBatis的Mapper接口是怎么运行的，在这篇文章中将简单介绍一下Mapper映射器的内部组成。
 

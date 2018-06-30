@@ -6,9 +6,6 @@ tags:  [SpringBoot, Gradle, war]
 keywords: SpringBoot,Gradle,war
 ---
 
-* content
-{:toc}
-
 
 Spring Boot默认将应用打包成可执行的jar包。有时候需要打包成war包部署在tomcat等容器。下面简单介绍下打包的步骤。
 

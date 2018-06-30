@@ -6,8 +6,6 @@ categories: [Java, Mybatis]
 keywords: Java,Mybatis,分页插件
 ---
 
-* content
-{:toc}
 
 自己实现了一个比较简单的Mybatis分页插件。在讲解如何实现分页插件之前，我们先简单介绍一下Mybatis中的一些重要的对象。我们通过映射器Mapper对数据库进行增删改操作时，Mapper执行的过程是通过Executor、StatementHandler、ParameterHandler和ResultHandler来完成对数据库的操作和返回结果的。
 

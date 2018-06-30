@@ -6,8 +6,6 @@ categories: [Java, Mybatis]
 keywords: Java,Mybatis,MappedStatement源码
 ---
 
-* content
-{:toc}
 
 本篇文章将简单分析Mybatis的StatementHandler源码
 

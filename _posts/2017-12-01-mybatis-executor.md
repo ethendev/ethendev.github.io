@@ -6,9 +6,6 @@ categories: [Java, Mybatis]
 keywords: Java,Mybatis,Executor
 ---
 
-* content
-{:toc}
-
 
 在MyBatis中，执行器(Executor)有着非常重要的作用，它是一个真正执行Java和数据库交互的东西。
 在MyBatis配置文件中，可以通过如下方式设置默认执行器  

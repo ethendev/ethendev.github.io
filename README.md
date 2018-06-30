@@ -1,151 +1,171 @@
-# About this Jekyll Blog Theme
+# NexT
+
+> NexT is a high quality elegant [Jekyll](https://jekyllrb.com) theme ported from [Hexo NexT](https://github.com/iissnan/hexo-theme-next). It is crafted from scratch, with love.
 
 
-If you like this blog theme, please give me a star.
+ * [Live Preview](http://simpleyyt.github.io/jekyll-theme-next/)
+ * [Yitao's Blog](http://simpleyyt.com)
 
-## Content
+## Screenshots
 
-* [Preview](#preview)
-* [Usage](#usage)
-    * [1. Install ruby and jekyll environment](#1-install-ruby-and-jekyll-environment)
-    * [2. Clone my code](#2-clone-my-code)
-    * [3. Change parameter](#3-change-parameter)
-    * [4. Write post](#4-write-post)
-    * [5. Local launch](#5-local-launch)
-* [License](#license)
+* Desktop
+![Desktop Preview](http://iissnan.com/nexus/next/desktop-preview.png)
 
-## Preview
+* Sidebar
 
-First, take a look at the blog page.
+![Desktop Sidebar Preview](http://iissnan.com/nexus/next/desktop-sidebar-preview.png)
 
-![index](/img/post.png)
+* Sidebar (Post details page)
 
+![Desktop Sidebar Preview](http://iissnan.com/nexus/next/desktop-sidebar-toc.png)
 
-## Usage
+* Mobile
+
+![Mobile Preview](http://iissnan.com/nexus/next/mobile.png)
 
 
-### 1. Install ruby and jekyll environment
+## Installation
 
-This step and Step 5 mainly talk to you how to launch blog at local. If you don't want to launch at local, you can ignore these 2 steps. But I still strongly suggest to do this. Ensure there is nothing wrong before pushing to the github.
+Check whether you have `Ruby 2.1.0` or higher installed:
 
-The Windows users can directly use [RubyInstaller](http://rubyinstaller.org/) to install ruby environment. Follow the prompts while installing.
-
-Install jekyll commands:
-
-```
-gem install jekyll
+```sh
+ruby --version
 ```
 
-For more details, you can view the jekyll official website. [https://jekyllrb.com/](https://jekyllrb.com/)
+Install `Bundler`:
 
-### 2. Clone my code
-
-```
-git clone https://github.com/ethendev/ethendev.github.io.git
+```sh
+gem install bundler
 ```
 
-### 3. Change parameter
+Clone NexT theme:
 
-Mainly change the parameters at file `_config.yml` and use your own `favicon.ico`.
+```sh
+git clone https://github.com/Simpleyyt/jekyll-theme-next.git
+cd jekyll-theme-next
+```
+
+Install Jekyll and other dependencies from the GitHub Pages gem:
+
+```sh
+bundle install
+```
+
+Run your Jekyll site locally:
+
+```sh
+bundle exec jekyll server
+```
+
+More Details：[Setting up your GitHub Pages site locally with Jekyll](https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/)
 
 
-Change your title and url.
+## Features
+
+### Multiple languages support, including: English / Russian / French / German / Simplified Chinese / Traditional Chinese.
+
+Default language is English.
 
 ```yml
-# Site settings
-title: BlogHub
-brief-intro: Back-end Dev Engineer
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://ethendev.github.io/"
+language: en
+# language: zh-Hans
+# language: fr-FR
+# language: zh-hk
+# language: zh-tw
+# language: ru
+# language: de
 ```
 
-
-If you want to comment, visit https://disqus.com/ or https://livere.com/ to get your own name, and replace the below value.
+Set `language` field as following in site `_config.yml` to change to Chinese.
 
 ```yml
-# comments
-livere_uid: XXXX
-disqus_shortname: xxxx
+language: zh-Hans
 ```
 
+### Comment support.
 
-Statistic and Analysis
+NexT has native support for `DuoShuo` and `Disqus` comment systems.
 
-This theme supports Google Analytics and Baidu Statistics，visit https://www.google.com/analytics/ or http://tongji.baidu.com/, get your own id.
+Add the following snippets to your `_config.yml`:
 
 ```yml
-# statistic analysis
-# peplace your own ID
-baidu_tongji_id: xxxxxxxxxxxx
-google_analytics_id: UA-xxxxxxxx
+duoshuo:
+  enable: true
+  shortname: your-duoshuo-shortname
 ```
 
-### 4. Write post
-
-To create a new post, all you need to do is create a file in the _posts directory. How you name files in this folder is important. Jekyll requires blog post files to be named according to the following format:
-```
-yyyy-MM-dd-title.md
-```
-
-Before you start posting, you should declare layout、title、categories、tags、author(optional) info.
-
-
-```
----
-layout: post
-title: SpringBoot中数据源读写分离配置
-tags:  [SpringBoot, 读写分离, DB]
-categories: [SpringBoot]
-keywords: SpringBoot,读写分离,DB
----
-```
-
-These follow code is for generating table of contents.
-```
-* content
-{:toc}
-```
-
-
-Each post automatically takes the first block of text, from the beginning of the content to the first occurrence of excerpt_separator, and sets it in the post’s excerpt. 
-
-You can set `excerpt_separator` in the `_config.yml`, as follows:
+OR
 
 ```yml
-# excerpt
-excerpt_separator: "\n\n\n\n"
+disqus_shortname: your-disqus-shortname
 ```
 
-If you don’t like the automatically-generated post excerpt, it can be explicitly overridden by adding an excerpt value to your post’s YAML Front Matter. 
+### Social Media
 
-```
----
-layout: post
-title: 
-tags:  
-categories: 
-excerpt: your excerpt
----
-```
+NexT can automatically add links to your Social Media accounts:
 
-### 5. Local launch
-
-use command:
-
-```
-jekyll server
+```yml
+social:
+  GitHub: your-github-url
+  Twitter: your-twitter-url
+  Weibo: your-weibo-url
+  DouBan: your-douban-url
+  ZhiHu: your-zhihu-url
 ```
 
-When you see the content below, it starts to work.
+### Feed link.
+
+> Show a feed link.
+
+Set `rss` field in theme's `_config.yml`, as the following value:
+
+1. `rss: false` will totally disable feed link.
+2. `rss:  ` use sites' feed link. This is the default option.
+
+    Follow the installation instruction in the plugin's README. After the configuration is done for this plugin, the feed link is ready too.
+
+3. `rss: http://your-feed-url` set specific feed link.
+
+### Up to 5 code highlight themes built-in.
+
+NexT uses [Tomorrow Theme](https://github.com/chriskempson/tomorrow-theme) with 5 themes for you to choose from.
+Next use `normal` by default. Have a preview about `normal` and `night`:
+
+![Tomorrow Normal Preview](http://iissnan.com/nexus/next/tomorrow-normal.png)
+![Tomorrow Night Preview](http://iissnan.com/nexus/next/tomorrow-night.png)
+
+Head over to [Tomorrow Theme](https://github.com/chriskempson/tomorrow-theme) for more details.
+
+## Configuration
+
+NexT comes with few configurations.
+
+```yml
+
+# Menu configuration.
+menu:
+  home: /
+  archives: /archives
+
+# Favicon
+favicon: /assets/favicon.ico
+
+# Avatar (put the image into next/source/images/)
+# can be any image format supported by web browsers (JPEG,PNG,GIF,SVG,..)
+avatar: /assets/default_avatar.png
+
+# Code highlight theme
+# available: normal | night | night eighties | night blue | night bright
+highlight_theme: normal
+
+# Fancybox for image gallery
+fancybox: true
+
+# Specify the date when the site was setup
+since: 2013
 
 ```
-Server address: http://127.0.0.1:4000/
-Server running... press ctrl-c to stop.
-```
 
-Visit http://127.0.0.1:4000/ to see your blog.
+## Browser support
 
-
-## License
-
-[MIT License](https://github.com/ethendev/ethendev.github.io/blob/master/LICENSE.md)
+![Browser support](http://iissnan.com/nexus/next/browser-support.png)

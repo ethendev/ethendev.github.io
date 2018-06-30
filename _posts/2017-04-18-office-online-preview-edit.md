@@ -6,8 +6,6 @@ tags: [Java, Office, 预览, 编辑]
 keywords: Office,在线,预览,编辑
 ---
 
-* content
-{:toc}
 
 最近项目中需要用到office文件在线编辑功能，然而很多解决方案都是收费的，于是决定采用微软免费的microsoft office online 2016和wopi 协议来实现。
 

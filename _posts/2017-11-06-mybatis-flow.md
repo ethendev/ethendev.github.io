@@ -7,9 +7,6 @@ keywords: Java,Mybatis
 excerpt: MyBatis的运行过程主要分为两步，第一步读取配置文件缓存到Configuration对象，用来创建SqlSessionFactory，第二步是获取SqlSession以及使用SqlSession进行数据库操作。
 ---
 
-* content
-{:toc}
-
 ### 1. MyBatis的基本构成
 在介绍之前，先简单回顾一下MyBatis的核心类。
 * SqlSessionFactoryBuilder(构造器): 根据配置信息或者代码来生成SqlSessionFactory
@@ -166,7 +163,7 @@ public class MapperMethod {
 
 
 下图是这4个类运行的流程图：
-![运行流程](/img/mybatis_flow.png)
+![运行流程](https://raw.githubusercontent.com/ethendev/data/master/silo/img/mybatis/mybatis_flow.png)
 
 
 select时序图

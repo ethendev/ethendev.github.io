@@ -5,8 +5,6 @@ tags:  [SpringBoot, 读写分离, DB]
 categories: [SpringBoot]
 ---
 
-* content
-{:toc}
 
 开发中常用到主从数据库来提高系统的性能。怎么样才能方便的实现主从读写分离呢？通过事务注解里面的可读属性readOnly的取值来自动切换数据源, 从而实现数据库读写分离。
 

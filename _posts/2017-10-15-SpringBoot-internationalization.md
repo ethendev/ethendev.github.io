@@ -6,8 +6,6 @@ categories: [SpringBoot]
 keywords: SpringBoot,国际化
 ---
 
-* content
-{:toc}
 
 在这个教程中，我们将看看如何将国际化添加到Spring Boot应用程序。
 

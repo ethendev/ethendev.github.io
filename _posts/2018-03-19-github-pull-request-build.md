@@ -6,8 +6,6 @@ categories: [Jenkins]
 keywords: GitHub,pull request,Jenkins
 ---
 
-* content
-{:toc}
 
 当开发人员向GitHub的master分支提交pull request时，需要相关的人员进行review后，才merge到master分支。通过Jenkins，可以很方便的实现pull request时自动触发构建、测试代码，极大的提高工作效率。下面简单介绍一下配置步骤。
 

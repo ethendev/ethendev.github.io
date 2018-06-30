@@ -5,9 +5,6 @@ categories: [JVM, Java]
 tags:  [JVM, 对象, 创建]
 ---
 
-* content
-{:toc}
-
 
 在使用java开发程序的时候，用new就可以创建出一个对象。在这个创建对象的过程中，JVM做了不少的工作，流程大体如下：
 
@@ -28,7 +25,7 @@ cond(yes)->io->set->e
 cond(no)->sub1(right)->io
 ``` -->
 
-![flow](/img/jvm_object_create_flow.png)
+![flow](https://raw.githubusercontent.com/ethendev/data/master/silo/img/jvm/jvm_object_create_flow.png)
 
 
 ### 定位符号引用

@@ -6,11 +6,8 @@ categories: [SpringBoot]
 keywords: SpringBoot,跨域
 ---
 
-* content
-{:toc}
 
 项目中经常会遇到前后端分离的情况，分离之后会碰到跨域问题，前端无法访问后端的接口。可以通过如下3种方式解决跨域问题。
-
 
 
 

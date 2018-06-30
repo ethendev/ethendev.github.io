@@ -6,8 +6,6 @@ categories: [Java]
 keywords: Java,序列化,Long
 ---
 
-* content
-{:toc}
 
 DB中我用的ID是long类型的，Java代码中接口返回的数据，ID数值是对的，但当通过浏览器上返回的json串中，发现数值不对了。例如：DB中ID= 4616189619433466044，浏览器上变成了 4616189619433466000。
 
