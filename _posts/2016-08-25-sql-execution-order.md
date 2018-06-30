@@ -48,7 +48,7 @@ tags:  [SQL, 顺序]
 
 5.  执行group by 对VT4中的行分组，生成VT5。
 
-6.  执行CUBE|ROLLUP：把超组(Suppergroups)插入VT5,生成VT6.
+6.  执行CUBE\|ROLLUP：把超组(Suppergroups)插入VT5,生成VT6.
 
 7.  执行having过滤
     HAVING子句主要和GROUP BY子句配合使用，having后面可以跟组函数的条件。对VT6应用HAVING筛选器。只有     使<having_condition>为true的组才会被插入VT7.

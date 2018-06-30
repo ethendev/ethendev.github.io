@@ -167,3 +167,7 @@ public class MapperMethod {
 
 下图是这4个类运行的流程图：
 ![运行流程](/img/mybatis_flow.png)
+
+
+select时序图
+![时序图](https://i.loli.net/2018/06/23/5b2dbd49c6354.png)
