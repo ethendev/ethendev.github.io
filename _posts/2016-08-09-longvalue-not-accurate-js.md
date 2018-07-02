@@ -1,41 +1,61 @@
 ---
 layout: post
-title: Java序列化时Long型数值在JS中不准确
+title: Java Long型数值序列化后在JS中丢失精度
 tags:  [Java, 序列化, Long]
 categories: [Java]
 keywords: Java,序列化,Long
 ---
 
 
-DB中我用的ID是long类型的，Java代码中接口返回的数据，ID数值是对的，但当通过浏览器上返回的json串中，发现数值不对了。例如：DB中ID= 4616189619433466044，浏览器上变成了 4616189619433466000。
+Java对象中的主键Id是long类型，API返回的数据里面Id数值是正确的，但是序列化后返回给浏览器的json串中，发现Id的值不对了。例如：Java中Id = 4616189619433466044，浏览器上变成了 4616189619433466000。
 
 
 
 
-## 原因
+### 原因
 
-原来是JavaScript数值类型取值范围导致的问题，JavaScript中Number类型的能安全的表示数字的范围在 -(2^53 - 1) 到 2^53 - 1 之间之间，包含-(2^53 - 1) 和 2^53 - 1。安全的意思是指能够准确地表示整数和正确地比较整数。
+原来是JavaScript的 Number  类型取值范围导致的问题。JavaScript中Number类型能安全表示数字的范围是 -(2^53 - 1) 到 (2^53 - 1)。
+
+知道原因后解决这个问题的方法就很简单了，JS不用Number类型来保存long值，而是使用String类型。可以在JS中修改类型，也可以在后端代码中修改。此处给出使用jackson时的解决方案。
+
  
-解决这个问题的方法很简单，就是JS不用number来保存long值，而是使用string。可以在js中修改,也可以在服务端序列化的时候修改。此处给出sprign mvc 使用 jackson时的解决方案。
- 
+#### 方案一、全局配置
 ```
-@Override
-public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-  MappingJackson2HttpMessageConverter jackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
- 
-  ObjectMapper objectMapper = new ObjectMapper();
- 
-  /**
-  * 序列换成json时,将所有的long变成string
-  * 因为js中得数字类型不能包含所有的java long值
-  */
-  
-  SimpleModule simpleModule = new SimpleModule();
-  simpleModule.addSerializer(Long.class, ToStringSerializer.instance);
-  simpleModule.addSerializer(Long.TYPE, ToStringSerializer.instance);
-  objectMapper.registerModule(simpleModule);
- 
-  jackson2HttpMessageConverter.setObjectMapper(objectMapper);
-  converters.add(jackson2HttpMessageConverter);
+@Configuration
+public class WebConfig extends WebMvcConfigurerAdapter {
+
+    ......
+    
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        /**
+         * 将所有的long变成string
+         */
+        SimpleModule simpleModule = new SimpleModule();
+        simpleModule.addSerializer(Long.class, ToStringSerializer.instance);
+        simpleModule.addSerializer(Long.TYPE, ToStringSerializer.instance);
+        objectMapper.registerModule(simpleModule);
+
+        converter.setObjectMapper(objectMapper);
+        converters.add(converter);
+    }
+
+
+}
+```
+
+
+#### 方案二、bean中配置
+```
+public class UserVo {
+
+    @JsonSerialize(using = ToStringSerializer.class)
+    private Long userId;
+
+    ......
 }
 ```
