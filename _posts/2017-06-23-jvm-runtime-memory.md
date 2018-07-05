@@ -2,7 +2,7 @@
 layout: post
 title:  JVM运行时内存区域
 categories: [Java, JVM]
-tags:  [JVM, 运行时, 内存]
+tags:  [JVM, 内存区域划分]
 keywords: JVM,运行时,内存
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title:  Spring MVC之HandlerMethodArgumentResolver参数解析器
 categories: [Java]
-tags:  [Java, Spring MVC，ArgumentResolver]
+tags:  [Java, Spring MVC, ArgumentResolver]
 keywords: Java,Spring MVC,ArgumentResolver
 ---
 

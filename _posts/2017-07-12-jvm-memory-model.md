@@ -2,7 +2,7 @@
 layout: post
 title:  Java内存模型
 categories: [Java, JVM]
-tags:  [Java, 内存, 模型]
+tags:  [Java, 内存模型]
 keywords: Java,内存,模型
 ---
 

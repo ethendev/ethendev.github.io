@@ -2,7 +2,7 @@
 layout: post
 title:  "office online server实现文档的预览编辑"
 categories: Java
-tags: [Java, Office, 预览, 编辑]
+tags: [Java, office online]
 keywords: Office,在线,预览,编辑
 ---
 

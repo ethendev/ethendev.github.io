@@ -2,7 +2,7 @@
 layout: post
 title:  SQL语句执行顺序
 categories: [SQL]
-tags:  [SQL, 顺序]
+tags:  [SQL]
 ---
 
 
