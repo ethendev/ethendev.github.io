@@ -22,9 +22,9 @@ permalink: /:year/:month/:day/:title/
 # Pagination
 paginate: 10
 #paginate_path: "/page:num/"
-#archive:
-  #paginate: 10
-  #paginate_path: "/page:num/"
+archive:
+  paginate: 20
+  paginate_path: "/page:num/"
 #category:
   #paginate: 10
   #paginate_path: "/page:num/"
