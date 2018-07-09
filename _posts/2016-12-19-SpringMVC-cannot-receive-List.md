@@ -90,16 +90,13 @@ public void getEventData(ParamVo param) {
 
 方法三：POST方法时Java后端使用@RequestBody注解接收参数
 ```
-var arr = [];
-arr.push("123");
-arr.push("456");
 $.ajax{
-      url:"xxxx",
-      type : 'POST',
-      dataType:"json",      
-      contentType:"application/json", 
-      data: JSON.stringify(arr),
-      ......
+    url:"xxxx",
+    type : 'POST',
+    dataType:"json",      
+    contentType:"application/json", 
+    data: JSON.stringify(["123", "456"]),
+    ......
 }
 ```
 
