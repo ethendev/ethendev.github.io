@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Mybatis之Executor
-tags:  [Java, Mybatis]
-categories: [Java, Mybatis]
-keywords: Java,Mybatis,Executor
+tags:  [Java, MyBatis]
+categories: [Java, MyBatis]
+keywords: Java,MyBatis,Executor
 ---
 
 

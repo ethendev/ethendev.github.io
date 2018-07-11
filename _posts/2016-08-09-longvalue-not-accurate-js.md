@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Java Long型数值序列化后在JS中丢失精度
-tags:  [Java, 序列化, Long]
+tags:  [Java, 序列化]
 categories: [Java]
 keywords: Java,序列化,Long
 ---

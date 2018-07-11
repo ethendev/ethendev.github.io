@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Mybatis运行过程简介
-tags:  [Java, Mybatis]
-categories: [Java, Mybatis]
-keywords: Java,Mybatis
+title: MyBatis运行过程简介
+tags:  [Java, MyBatis]
+categories: [Java, MyBatis]
+keywords: Java,MyBatis
 excerpt: MyBatis的运行过程主要分为两步，第一步读取配置文件缓存到Configuration对象，用来创建SqlSessionFactory，第二步是获取SqlSession以及使用SqlSession进行数据库操作。
 ---
 

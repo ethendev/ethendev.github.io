@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Mybatis之MappedStatement源码分析
-tags:  [Java, Mybatis, MappedStatement]
-categories: [Java, Mybatis]
-keywords: Java,Mybatis,MappedStatement源码
+tags:  [Java, MyBatis, MappedStatement]
+categories: [Java, MyBatis]
+keywords: Java,MyBatis,MappedStatement源码
 ---
 
 

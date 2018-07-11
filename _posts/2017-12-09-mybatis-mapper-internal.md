@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Mybatis之Mapper内部组成
-tags:  [Java, Mybatis]
-categories: [Java, Mybatis]
-keywords: Java,Mybatis,Mapper
+title: MyBatis之Mapper内部组成
+tags:  [Java, MyBatis]
+categories: [Java, MyBatis]
+keywords: Java,MyBatis,Mapper
 ---
 
 

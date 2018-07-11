@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Spring MVC不能直接接收List类型参数的问题
-tags:  [Java, Spring MVC, List]
+tags:  [Java, Spring MVC]
 categories: [Java]
-keywords: Java,Spring MVC,List
+keywords: Java,Spring MVC,List,参数
 ---
 
 
