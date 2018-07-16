@@ -53,19 +53,20 @@ public void addInterceptors(InterceptorRegistry registry) {
 要进行本地化的值的键必须在每个文件中都是相同的，其值应与其对应的语言相适应。
 
 如果某个键在某个请求的语言环境中不存在，则应用程序将回退到默认语言环境值。定义如下3个消息文件：
-messages.properties
+
+messages.properties  
 ```
 greeting=Hello! Welcome to our website!
 lang.change=Change the language
 ```
 
-messages_en_US.properties
+messages_en_US.properties  
 ```
 greeting=Hello! Welcome to our website!
 lang.change=Change the language
 ```
 
-messages_zh_CN.properties
+messages_zh_CN.properties  
 ```
 greeting=你好，欢迎访问我们的网站！
 lang.change=更换语言
