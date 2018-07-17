@@ -20,10 +20,36 @@ MyBatis的resultMap支持三种级联方式：一对一关系（assocation）、
 
 在mybatis的配置中有两个全局参数 lazyLoadingEnabled 和 aggressiveLazyLoading ：
 
+<!-- 
 | 设置项 |  描述 | 可选值 | 默认值  |
 | -      |  :-   | :-     | :-      |
 | lazyLoadingEnabled | 全局懒加载设置 | true \| false | false |
-| aggressiveLazyLoading | 对任意延迟属性的调用会使带有延迟加载属性的对象完整加载 | true \| false | true |
+| aggressiveLazyLoading | 对任意延迟属性的调用会使带有延迟加载属性的对象完整加载 | true \| false | true | 
+-->
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left ;width: 20%">设置项</th>
+      <th style="text-align: left ;width: 50%">描述</th>
+      <th style="text-align: left">可选值</th>
+      <th style="text-align: left">默认值</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>lazyLoadingEnabled</td>
+      <td style="text-align: left">全局懒加载设置</td>
+      <td style="text-align: left">true | false</td>
+      <td style="text-align: left">false</td>
+    </tr>
+    <tr>
+      <td>aggressiveLazyLoading</td>
+      <td style="text-align: left">对任意延迟属性的调用会使带有延迟加载属性的对象完整加载</td>
+      <td style="text-align: left">true | false</td>
+      <td style="text-align: left">true</td>
+    </tr>
+  </tbody>
+</table>
 
 mybatis默认没有开启延迟加载，需要在mybatis-config.xml的settings进行如下配置。
 ```

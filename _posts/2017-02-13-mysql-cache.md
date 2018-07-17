@@ -36,9 +36,29 @@ public List<UserVo> getList() throws Exception {
 ### 关闭一级缓存
 如果不想开启一级缓存，该如何关闭它呢？先看看MyBatis配置中与一级缓存有关的配置项
 
-| 设置 |  描述                        | 可选值 | 默认值  |
+<!-- | 设置 |  描述                        | 可选值 | 默认值  |
 | -    |  :-                         | :-     | :-      |
-| localCacheScope | 设置缓存范围。设置为SESSION时会缓存一个会话中执行的所有查询，为 STATEMENT时本地会话仅用在语句执行上，相同 SqlSession 的不同调用将不会共享数据| SESSION \| STATEMENT | SESSION |
+| localCacheScope | 设置缓存范围。设置为SESSION时会缓存一个会话中执行的所有查询，为 STATEMENT时本地会话仅用在语句执行上，相同 SqlSession 的不同调用将不会共享数据| SESSION \| STATEMENT | SESSION | -->
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 15%">设置</th>
+      <th style="text-align: left;">描述</th>
+      <th style="text-align: left; width: 20%">可选值</th>
+      <th style="text-align: left; width: 10%">默认值</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>localCacheScope</td>
+      <td style="text-align: left">设置缓存范围。设置为SESSION时会缓存一个会话中执行的所有查询，为 STATEMENT时本地会话仅用在语句执行上，相同 SqlSession 的不同调用将不会共享数据</td>
+      <td style="text-align: left">SESSION | STATEMENT</td>
+      <td style="text-align: left">SESSION</td>
+    </tr>
+  </tbody>
+</table>
+
 
 要关闭一级缓存，只需要在MyBatis的配置文件中将localCacheScope设置为STATEMENT就可以了。
 ```
@@ -149,13 +169,52 @@ public class StudentController {
 
 select语句  
 
-| 属性 |  描述 | 默认值  |
+<!-- | 属性 |  描述 | 默认值  |
 | -   |  :-  |:-        |
 | flushCache | 将其设置为 true，任何时候只要语句被调用，都会导致本地缓存和二级缓存都会被清空 | false |
-| useCache | 将其设置为 true，将会导致本条语句的结果被二级缓存 | 对 select 元素为 true |
+| useCache | 将其设置为 true，将会导致本条语句的结果被二级缓存 | 对 select 元素为 true | -->
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:15%">属性</th>
+      <th style="text-align: left">描述</th>
+      <th style="text-align: left; width:20%">默认值</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>flushCache</td>
+      <td style="text-align: left">将其设置为 true，任何时候只要语句被调用，都会导致本地缓存和二级缓存都会被清空</td>
+      <td style="text-align: left">false</td>
+    </tr>
+    <tr>
+      <td>useCache</td>
+      <td style="text-align: left">将其设置为 true，将会导致本条语句的结果被二级缓存</td>
+      <td style="text-align: left">对 select 元素为 true</td>
+    </tr>
+  </tbody>
+</table>
 
 insert、update、delete语句  
 
-| 属性  |  描述 | 默认值  |
+<!-- | 属性  |  描述 | 默认值  |
 | -     |  :-  |:-       | 
-| flushCache | 将其设置为 true，任何时候只要语句被调用，都会导致本地缓存和二级缓存都会被清空 | true |
+| flushCache | 将其设置为 true，任何时候只要语句被调用，都会导致本地缓存和二级缓存都会被清空 | true | -->
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:15%">属性</th>
+      <th style="text-align: left">描述</th>
+      <th style="text-align: left; width:20%">默认值</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>flushCache</td>
+      <td style="text-align: left">将其设置为 true，任何时候只要语句被调用，都会导致本地缓存和二级缓存都会被清空</td>
+      <td style="text-align: left">true</td>
+    </tr>
+  </tbody>
+</table>

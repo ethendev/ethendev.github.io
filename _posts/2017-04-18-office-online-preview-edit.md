@@ -138,19 +138,19 @@ public void postFile(@PathVariable(name = "name") String name, @RequestBody byte
 ### 接口访问
 
 访问http://owas.contoso.com/hosting/discovery，owas.contoso.com是配置的office online的域名，当然也可以通过IP访问，请换成自己的地址，如图：
-![这里写图片描述](http://img.blog.csdn.net/20170418114309314?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveXVmZWl5YW5saXU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![这里写图片描述](https://raw.githubusercontent.com/ethendev/data/master/silo/img/office/20170418114309314.png)
 
 在上面可以找到对应的文件类型的请求路径。然根据上面的URL+ WOPISrc=wopiHost的接口地址
 就可以实现服务了。
 
 例如word文档预览
 http://[owas.domain]/wv/wordviewerframe.aspx?WOPISrc=http://[WopiHost.domain]:8080/wopi/files/test.docx&access_token=123456
-![这里写图片描述](http://img.blog.csdn.net/20170418172425910?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveXVmZWl5YW5saXU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![这里写图片描述](https://raw.githubusercontent.com/ethendev/data/master/silo/img/office/20170418172425910.png)
 
 
 word文档编辑
 http://[owas.domain]/we/wordeditorframe.aspx?WOPISrc=http://[WopiHost.domain]:8080/wopi/files/test.docx&access_token=123456
-![这里写图片描述](http://img.blog.csdn.net/20170418172534332?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveXVmZWl5YW5saXU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![这里写图片描述](https://raw.githubusercontent.com/ethendev/data/master/silo/img/office/20170418172534332.png)
 
 
 > **注意：**web app上没有保存按钮，是自动保存的****。
