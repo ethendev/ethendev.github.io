@@ -80,6 +80,7 @@ public class DataSourceConfig {
         return dynamicDataSource;
     }
  
+    @Bean
     public DataSource dataSource() throws IOException {
         return new LazyConnectionDataSourceProxy(dynamicDataSource());
     }
@@ -95,11 +96,8 @@ public class DataSourceConfig {
     }
  
     @Bean
-    public DataSourceTransactionManager txManager() throws IOException {
-        DataSourceTransactionManager dataSourceTXManager = new DataSourceTransactionManager();
-        dataSourceTXManager.setDataSource(dataSource());
-        AnnotationTransactionAspect.aspectOf().setTransactionManager(dataSourceTXManager);
-        return dataSourceTXManager;
+    public DataSourceTransactionManager transactionManager() throws IOException {
+        return new DataSourceTransactionManager(dataSource());
     }
  
 }
