@@ -14,7 +14,17 @@ keywords: SpringBoot,Hibernate Validator,参数验证
 [Hibernate Validator](http://hibernate.org/validator/) 是 Bean Validation 的参考实现 . Hibernate Validator 提供了 [JSR 303](http://jcp.org/en/jsr/detail?id=303) 规范中所有内置 constraint 的实现，除此之外还有一些附加的 constraint。
 
 
+## 添加依赖
 使用 SPringBoot 开发程序时，用户不需要添加额外的依赖来使用 Hibernate Validator ，因为 spring-boot-starter-web 会自动引入它。
+
+如果没用 SpringBoot ，则需要添加依赖
+```
+<dependency>
+    <groupId>org.hibernate.validator</groupId>
+    <artifactId>hibernate-validator</artifactId>
+    <version>6.0.8.Final</version>
+</dependency>
+```
 
 
 ## 内置注解
@@ -65,7 +75,7 @@ Hibernate Validator 还提供了几个有用的自定义约束，如下所示。
 |@URL         |根据RFC2396检查带注释的字符序列是否为有效URL |
 
 ## 示例
-### Bean Validation
+### 请求参数校验
 下面来看一个例子，使用 Validator 来验证 bean 参数。
 
 校验 name 属性不能为空且长度不能超过 20 ，description 属性不能为空且长度不能超过 200， 若没有通过校验则使用自定义的 message 返回报错信息。 
@@ -117,13 +127,92 @@ public class TestController {
 Whitelabel Error Page
 This application has no explicit mapping for /error, so you are seeing this as a fallback.
 
-Sat Jul 21 20:17:16 CST 2018
+Mon May 16 20:17:16 CST 2018
 There was an unexpected error (type=Internal Server Error, status=500).
 test.url: must be a valid URL
 ```
 
+### 方法返回值校验
+还可以用来校验方法的返回值
+```
+@RestController
+@Validated
+public class TestController {
+
+    @GetMapping(value = "/testReturn")
+    public @NotEmpty String testReturn(String param) {
+        return param;
+    }
+}
+```
+
+### 分组校验
+有时候对同一个对象，不同的场景下有不同的验证要求。比如，添加新用户时不需要验证 userId ，但是更新时需要验证。可以使用分组校验来实现这个需求。
+
+首先创建分组
+```
+public interface Add {
+}
+```
+
+```
+public interface Update {
+}
+```
+
+```
+public class UserVo {
+    // 只在更新时验证
+    @NotNull(groups = {Update.class}, message = "userId can notbe null")
+    private Long userId;
+
+    @NotBlank
+    @Length(min = 4, max = 20, message = "Length must be between 4 and 20")
+    private String nickName;
+
+    // 省略 set get
+}
+```
+
+@Validated 注解上需要指定组，可以从 BindingResult 对象中获取校验失败的详细信息
+```
+public class TestController {
+    @RequestMapping(value = "/add")
+    public void add(@Validated UserVo user, BindingResult result) {
+        System.out.println(user);
+        if(result.hasErrors()){
+            List<ObjectError> allErrors = result.getAllErrors();
+            for (ObjectError error : allErrors) {
+                System.out.println(error.getDefaultMessage());
+            }
+        }
+    }
+
+    @RequestMapping(value = "/update")
+    public void update(@Validated({Update.class}) UserVo user, BindingResult result) {
+        System.out.println(user);
+        if(result.hasErrors()){
+            List<ObjectError> allErrors = result.getAllErrors();
+            for (ObjectError error : allErrors) {
+                System.out.println(error.getDefaultMessage());
+            }
+        }
+    }
+}
+```
+
 ## 自定义校验
 虽然 Hibernate Validator 已经提供了很多常用的校验注解，但对于一些复杂的参数的校验，原有的校验不满足要求的情况下，用户可以实现自己的校验注解。
+
+所有的验证都需要实现 ConstraintValidator 接口，它包含一个初始化事件方法，和一个判断是否合法的方法。
+```
+public interface ConstraintValidator<A extends Annotation, T> {
+    default void initialize(A constraintAnnotation) {
+    }
+
+    boolean isValid(T var1, ConstraintValidatorContext var2);
+}
+```
 
 下面的例子实现一个自定义注解，要求参数不能与设置的值相等
 
@@ -180,7 +269,7 @@ public class TestController {
 Whitelabel Error Page
 This application has no explicit mapping for /error, so you are seeing this as a fallback.
 
-Sat Jul 21 20:54:22 CST 2018
+Mon May 16 20:54:22 CST 2018
 There was an unexpected error (type=Internal Server Error, status=500).
 test.url: 不能与给定的值相等
 ```
