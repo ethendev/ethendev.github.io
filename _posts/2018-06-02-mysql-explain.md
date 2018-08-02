@@ -8,9 +8,12 @@ keywords: MySQL,EXPLAIN
 
 EXPLAIN 语句提供有关 MySQL 如何执行语句的信息。 解释与 SELECT， DELETE， INSERT， REPLACE，和 UPDATE 语句有关的工作。
 
+
+
+
 EXPLAIN 返回 SELECT 语句中使用到的每个表的一行信息 。它按照 MySQL 在处理语句时读取它们的顺序列出表。MySQL 使用嵌套循环连接方法解析所有的 join 。这意味着 MySQL 从第一张表中读取一行数据，然后依次在第二张表，第三张表中找到匹配的行，依此类推。
 
-下面看一个简单的例子
+先看看 EXPLAIN 会输出哪些东西，下面看一个简单的例子。
 ```
 mysql> EXPLAIN SELECT * FROM student WHERE name = '李四';
 +----+-------------+-----------+------------+------+---------------+------+---------+------+------+----------+-------------+
@@ -23,18 +26,19 @@ mysql> EXPLAIN SELECT * FROM student WHERE name = '李四';
 ```
 
 ### EXPLAIN 输出列
+
 |列名         |含义                  |
 |:-           |:-                    |
 |id           |该 SELECT 标识符      |
 |select_type  |该 SELECT 类型        |
 |table        |表名                  |
-|partitions   |匹配的分区            |
-|type         |JOIN 类型              |
-|possible_keys|可供选择的索引        |
-|key          |实际选择的索引        |
-|key_len      |所选索引的长度        |
-|ref          |与索引进行比较的列    |
-|rows         |估计要检查的行数      |
+|partitions   |匹配的分区             |
+|type         |JOIN 类型             |
+|possible_keys|可供选择的索引         |
+|key          |实际选择的索引         |
+|key_len      |所选索引的长度         |
+|ref          |与索引进行比较的列     |
+|rows         |估计要检查的行数       |
 |filtered     |按查询条件过滤的行的百分比|
 |Extra        |附加信息              |
 
@@ -61,12 +65,22 @@ mysql> EXPLAIN SELECT * FROM student WHERE name = '李四';
 
 #### 3. table
 输出行所引用的表的名称。有时候并不是真实的表名，可以是下列值之一:
-* unionM,N
-* derivedN
-* subqueryN
+* unionM,N: 该行引用 id 值为 M 和 N 的行的并集。
+* derivedN: 该行引用 id 值为 N 的行的派生表结果。例如，派生表可能来自FROM子句中的子查询。
+* subqueryN: 该行引用 id 值为 N 的行的具体化物化子查询的结果。
 
 N 表示数字。
 
+```
+mysql> EXPLAIN SELECT * FROM (SELECT first_name, count(1) FROM employees group by first_name) t;
++----+-------------+------------+------------+------+---------------+------+---------+------+--------+----------+-----------------+
+| id | select_type | table      | partitions | type | possible_keys | key  | key_len | ref  | rows   | filtered | Extra           |
++----+-------------+------------+------------+------+---------------+------+---------+------+--------+----------+-----------------+
+|  1 | PRIMARY     | <derived2> | NULL       | ALL  | NULL          | NULL | NULL    | NULL | 299297 |   100.00 | NULL            |
+|  2 | DERIVED     | employees  | NULL       | ALL  | NULL          | NULL | NULL    | NULL | 299297 |   100.00 | Using temporary |
++----+-------------+------------+------------+------+---------------+------+---------+------+--------+----------+-----------------+
+2 rows in set, 1 warning (0.00 sec)
+```
 
 #### 4. partitions
 其记录与查询匹配的分区，无分区表的值为 NULL。
