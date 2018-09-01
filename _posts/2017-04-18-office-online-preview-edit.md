@@ -29,104 +29,91 @@ keywords: Office,在线,预览,编辑
 office online的安装教材网上很多，这里就不再赘述了。安装好office online，然后按照下面的步骤进行wopihost的开发。我用的开发环境是jkd1.8，spring boot。
 
 我们需要实现3个接口
-GET    api/wopi/files/{name}?access_token={access_token}
-GET    api/wopi/files/{name}/contents?access_token={access_token}     
-POST  api/wopi/files/{name}/contents?access_token={access_token}
+GET    api/wopi/files/{name}
+GET    api/wopi/files/{name}/contents
+POST   api/wopi/files/{name}/contents
 
 其中第一个接口获取文件的信息，返回的是json数据格式，第二个是获取文件流，第三个是保存修改文件。
 
 
 ### 接口实现
-先看下第一个接口的实现：
+先看下第一个获取文件信息的接口实现：
 ```
-@RequestMapping("/files/{name}")
-@ResponseBody
-public static Object checkFileInfo(@PathVariable(name = "name") String name, ServletRequest request, ServletResponse response) {
-    HttpServletRequest httpRequest = (HttpServletRequest) request;
-    HttpServletResponse httpResponse = (HttpServletResponse) response;
-    String uri = httpRequest.getRequestURI();
-
+@GetMapping("/files/{name}")
+public void getFileInfo(HttpServletRequest request, HttpServletResponse response) {
+    String uri = request.getRequestURI();
     FileInfo info = new FileInfo();
-    try {
-        // 获取文件名
-        String fileName = URLDecoder.decode(uri.substring(uri.indexOf("wopi/files/") + 11, uri.length()), "UTF-8");
+    try  {
+        // 获取文件名, 防止中文文件名乱码
+        String fileName = URLDecoder.decode(uri.substring(uri.indexOf("wopi/files/") + 11), CHARSET_UTF8);
         if (fileName != null && fileName.length() > 0) {
-            String path = filePath + fileName;
-            File file = new File(path);
+            File file = new File(filePath + fileName);
             if (file.exists()) {
-                // 取得文件名
                 info.setBaseFileName(file.getName());
                 info.setSize(file.length());
                 info.setOwnerId("admin");
                 info.setVersion(file.lastModified());
                 info.setSha256(getHash256(file));
-                info.setAllowExternalMarketplace(true);
-                info.setUserCanWrite(true);
-                info.setSupportsUpdate(true);
             }
         }
-    } catch (UnsupportedEncodingException e) {
+        ObjectMapper mapper = new ObjectMapper();
+        response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
+        response.getWriter().write(mapper.writeValueAsString(info));
+    } catch (Exception e) {
+        logger.error("getFileInfo failed, errMsg: {}", e.toString());
         e.printStackTrace();
     }
-    return info;
 }
 ```
 
 
 
-然后是第二个接口的实现：
+然后是第二个获取文件流接口的实现：
 
 ```
-@RequestMapping(value="/files/{name}/contents", method= RequestMethod.GET)
-public void getFile(@PathVariable(name = "name") String name, HttpServletResponse response) {
-    try {
-        // 文件的路径
-        String path = filePath + name;
-        File file = new File(path);
-        // 取得文件名
-        String filename = file.getName();
-        String contentType = "application/octet-stream";
-        // 以流的形式下载文件
-        InputStream fis = new BufferedInputStream(new FileInputStream(path));
+@GetMapping("/files/{name}/contents")
+public void getFile(@PathVariable String name, HttpServletResponse response) {
+    // 文件的路径
+    String path = filePath + name;
+    File file = new File(path);
+    String filename = file.getName();
+
+    try (InputStream fis = new BufferedInputStream(new FileInputStream(path));
+         OutputStream toClient = new BufferedOutputStream(response.getOutputStream())) {
         byte[] buffer = new byte[fis.available()];
         fis.read(buffer);
-        fis.close();
         // 清空response
         response.reset();
 
         // 设置response的Header
-        response.addHeader("Content-Disposition", "attachment;filename=" + new String(filename.getBytes("utf-8"), "ISO-8859-1"));
-        response.addHeader("Content-Length", "" + file.length());
-        OutputStream toClient = new BufferedOutputStream(response.getOutputStream());
-        response.setContentType(contentType);
+        response.addHeader("Content-Disposition", "attachment;filename=" +
+                new String(filename.getBytes(CHARSET_UTF8), "ISO-8859-1"));
+        response.addHeader("Content-Length", String.valueOf(file.length()));
+
+        response.setContentType(MediaType.APPLICATION_OCTET_STREAM_VALUE);
         toClient.write(buffer);
         toClient.flush();
-        toClient.close();
-    } catch (IOException ex) {
-        ex.printStackTrace();
+    } catch (IOException e) {
+        logger.error("getFile failed, errMsg: {}", e.toString());
+        e.printStackTrace();
     }
-}    
+}
 ```
 
 保存文件修改的接口实现：
 
 ```
-@RequestMapping(value="/files/{name}/contents", method= RequestMethod.POST)
+@PostMapping("/files/{name}/contents")
 public void postFile(@PathVariable(name = "name") String name, @RequestBody byte[] content) {
     // 文件的路径
     String path = filePath + name;
     File file = new File(path);
 
-    try {
-        if (!file.exists()) {
-            file.createNewFile();//构建文件
-        }
-        FileOutputStream fop = new FileOutputStream(file);
+    try (FileOutputStream fop = new FileOutputStream(file)) {
         fop.write(content);
         fop.flush();
-        fop.close();
-        System.out.println("------------ save file ------------ ");
     } catch (IOException e) {
+        logger.error("postFile failed, errMsg: {}", e.toString());
         e.printStackTrace();
     }
 }
@@ -138,19 +125,19 @@ public void postFile(@PathVariable(name = "name") String name, @RequestBody byte
 ### 接口访问
 
 访问http://owas.contoso.com/hosting/discovery，owas.contoso.com是配置的office online的域名，当然也可以通过IP访问，请换成自己的地址，如图：
-![这里写图片描述](https://raw.githubusercontent.com/ethendev/data/master/silo/img/office/20170418114309314.png)
+![API list](https://raw.githubusercontent.com/ethendev/data/master/silo/img/office/20170418114309314.png)
 
 在上面可以找到对应的文件类型的请求路径。然根据上面的URL+ WOPISrc=wopiHost的接口地址
 就可以实现服务了。
 
 例如word文档预览
-http://[owas.domain]/wv/wordviewerframe.aspx?WOPISrc=http://[WopiHost.domain]:8080/wopi/files/test.docx&access_token=123456
-![这里写图片描述](https://raw.githubusercontent.com/ethendev/data/master/silo/img/office/20170418172425910.png)
+http://[owas.domain]/wv/wordviewerframe.aspx?WOPISrc=http://[WopiHost.domain]:8080/wopi/files/test.docx
+![word view](https://raw.githubusercontent.com/ethendev/data/master/silo/img/office/20170418172425910.png)
 
 
 word文档编辑
-http://[owas.domain]/we/wordeditorframe.aspx?WOPISrc=http://[WopiHost.domain]:8080/wopi/files/test.docx&access_token=123456
-![这里写图片描述](https://raw.githubusercontent.com/ethendev/data/master/silo/img/office/20170418172534332.png)
+http://[owas.domain]/we/wordeditorframe.aspx?WOPISrc=http://[WopiHost.domain]:8080/wopi/files/test.docx
+![word edit](https://raw.githubusercontent.com/ethendev/data/master/silo/img/office/20170418172534332.png)
 
 
 > **注意：**web app上没有保存按钮，是自动保存的****。

@@ -6,19 +6,19 @@
 ## Screenshots
 
 * Desktop
-![Desktop Preview](http://iissnan.com/nexus/next/desktop-preview.png)
+![Desktop Preview](https://raw.githubusercontent.com/ethendev/data/master/silo/img/blog/20180901211720.png)
 
 * Sidebar
 
-![Desktop Sidebar Preview](http://iissnan.com/nexus/next/desktop-sidebar-preview.png)
+![Desktop Sidebar Preview](https://raw.githubusercontent.com/ethendev/data/master/silo/img/blog/20180901211151.png)
 
 * Sidebar (Post details page)
 
-![Desktop Sidebar Preview](http://iissnan.com/nexus/next/desktop-sidebar-toc.png)
+![Desktop Sidebar Preview](https://raw.githubusercontent.com/ethendev/data/master/silo/img/blog/20180901211230.png)
 
 * Mobile
 
-![Mobile Preview](http://iissnan.com/nexus/next/mobile.png)
+![Mobile Preview](https://raw.githubusercontent.com/ethendev/data/master/silo/img/blog/20180901211417.png)
 
 
 ## Installation

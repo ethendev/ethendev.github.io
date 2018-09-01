@@ -7,10 +7,13 @@ keywords: Java,CompletableFuture
 ---
 
 
-## Future 接口的局限性
 
 前面的文章中简单介绍了 Future 接口，Future接口在Java 5中被引入，设计初衷是对将来某个时刻会发生的结果进行建模。要使用Future，通常你只需要将耗时的操作封装在一个Callable对象中，再将它提交给ExecutorService，然后调用它的get方法去获取操作的结果。如果操作已经完成，该方法会立刻返回操作的结果，否则它会阻塞你的线程，直到操作完成，返回相应的结果。 
 
+
+
+
+## Future 接口的局限性
 
 但是 Future 接口存在一些不足之处，比如，我们很难表述Future结果之间的依赖性。某些时候，我们可能会碰到一些更复杂的场景，比如下面这些：
 
@@ -23,7 +26,7 @@ keywords: Java,CompletableFuture
 
 ## CompletableFuture
 
-CompletableFuture 类实现了Future接口。Stream 和 CompletableFuture 的设计都遵循 
+Java 8 中新增的 CompletableFuture 类实现了 Future 接口。Stream 和 CompletableFuture 的设计都遵循 
 了类似的模式：它们都使用了Lambda 表达式以及流水线的思想。从这个角度，你可以说 
 CompletableFuture 和 Future 的关系就跟 Stream 和 Collection 的关系一样。
 
