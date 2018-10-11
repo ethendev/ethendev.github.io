@@ -442,6 +442,9 @@ google_analytics: UA-119387651-1
 # See: https://webmaster.yandex.ru/
 #yandex_site_verification:
 
+# Bing Verification code, you could use it to submit your website to Bing.
+bing_site_verification: "F5EFE4D38BC48C12FA011592DD6B5496"
+
 # CNZZ count
 #cnzz_siteid:
 

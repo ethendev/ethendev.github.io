@@ -50,6 +50,9 @@
   <meta name="360-site-verification" content="{{ site.qihu_site_verification }}" />
 {% endif %}
 
+{% if site.bing_site_verification %}
+  <meta name="msvalidate.01" content="{{ site.bing_site_verification }}">
+{% endif %}
 
 {% if site.fancybox %}
   {% assign fancybox_css_uri = site.vendors._internal | append: '/fancybox/source/jquery.fancybox.css?v=2.1.5' | relative_url %}
