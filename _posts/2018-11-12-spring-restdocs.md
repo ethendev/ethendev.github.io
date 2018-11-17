@@ -111,79 +111,13 @@ jar {
 }
 ```
 
-配置 MockMvc
-```
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@ActiveProfiles({"local", "dev"})
-public abstract class MockMvcBase {
-
-    protected static final String DEFAULT_AUTHORIZATION = "Resource is public.";
-
-    @Autowired
-    protected WebApplicationContext context;
-
-    @Autowired
-    protected ObjectMapper objectMapper;
-
-    @Rule
-    public final JUnitRestDocumentation restDocumentation = new JUnitRestDocumentation(resolveOutputDir());
-
-    private String resolveOutputDir() {
-        String outputDir = System.getProperties().getProperty(
-                "org.springframework.restdocs.outputDir");
-        if (outputDir == null) {
-            outputDir = "target/generated-snippets";
-        }
-        return outputDir;
-    }
-
-    protected MockMvcSnippetConfigurer commonDocumentationConfiguration() {
-        return documentationConfiguration(restDocumentation)
-                .uris()
-                .withScheme("http")
-                .withHost("example.com")
-                .withPort(80)
-                .and().snippets()
-                .withDefaults(curlRequest(), httpRequest(), httpResponse(), responseFields(), requestFields(),
-                        //pathParameters(), requestParameters(),
-                        description(), methodAndPath(),
-                        section());
-    }
-
-    protected MockMvc getRestDocumentationMockMvc(MockMvcSnippetConfigurer configurer) throws Exception {
-        return MockMvcBuilders
-                .webAppContextSetup(context)
-                .alwaysDo(prepareJackson(objectMapper))
-                .alwaysDo(commonDocumentation())
-                .apply(configurer)
-                .build();
-    }
-
-    protected RestDocumentationResultHandler commonDocumentation() {
-        return document("{class-name}/{method-name}",
-                preprocessRequest(), commonResponsePreprocessor());
-    }
-
-    protected OperationResponsePreprocessor commonResponsePreprocessor() {
-        return preprocessResponse(replaceBinaryContent(), limitJsonArrayLength(objectMapper), prettyPrint());
-    }
-
-    protected String toJson(Object obj) {
-        try {
-            return objectMapper.writeValueAsString(obj);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-}
-```
-
 User 代码
 ```
 public class User {
     private Integer id;
+    /**
+     * the user of name
+     */
     private String name;
     private Integer age;
     private String sex;
@@ -221,25 +155,83 @@ public class UserController {
 }
 ```
 
+配置 MockMvc
+```
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public abstract class MockMvcBase {
+
+    @Autowired
+    protected WebApplicationContext context;
+
+    @Autowired
+    protected ObjectMapper objectMapper;
+
+    @Rule
+    public final JUnitRestDocumentation restDocumentation = new JUnitRestDocumentation(resolveOutputDir());
+
+    private String resolveOutputDir() {
+        String outputDir = System.getProperties().getProperty(
+                "org.springframework.restdocs.outputDir");
+        if (outputDir == null) {
+            outputDir = "target/generated-snippets";
+        }
+        return outputDir;
+    }
+
+    protected MockMvcSnippetConfigurer commonDocumentationConfiguration() {
+        return documentationConfiguration(restDocumentation)
+                .uris()
+                .withScheme("http")
+                .withHost("example.com")
+                .withPort(80)
+                .and().snippets()
+                .withDefaults(curlRequest(), httpRequest(), httpResponse(), responseFields(), 
+                        //requestFields(),pathParameters(), requestParameters(),
+                        description(), methodAndPath(),
+                        section());
+    }
+
+    protected MockMvc getRestDocumentationMockMvc(MockMvcSnippetConfigurer configurer) throws Exception {
+        return MockMvcBuilders
+                .webAppContextSetup(context)
+                .alwaysDo(prepareJackson(objectMapper))
+                .alwaysDo(commonDocumentation())
+                .apply(configurer)
+                .build();
+    }
+
+    protected RestDocumentationResultHandler commonDocumentation() {
+        return document("{class-name}/{method-name}",
+                preprocessRequest(), commonResponsePreprocessor());
+    }
+
+    protected OperationResponsePreprocessor commonResponsePreprocessor() {
+        return preprocessResponse(replaceBinaryContent(), limitJsonArrayLength(objectMapper), prettyPrint());
+    }
+
+    protected String toJson(Object obj) {
+        try {
+            return objectMapper.writeValueAsString(obj);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+}
+```
+
 添加单元测试
 ```
 public class UserDoc extends MockMvcBase {
 
-    private static User user = new User();
-
-    @BeforeClass
-    public static void setUp() {
-        user.setId(100);
-        user.setName("张三");
-        user.setAge(20);
-        user.setSex("男");
-    }
-
     @Test
     public void AddUser() throws Exception {
+        User user = new User(userId, "lisi", 20, "man");
         String param = toJson(user);
         getRestDocumentationMockMvc(
-                commonDocumentationConfiguration())
+                commonDocumentationConfiguration()
+                        .withAdditionalDefaults(requestFields()))
                 .perform(post("/user/addUser")
                         .contentType(MediaType.APPLICATION_JSON_UTF8).content(param))
                 .andExpect(status().is2xxSuccessful());
@@ -249,8 +241,7 @@ public class UserDoc extends MockMvcBase {
     public void getUser() throws Exception {
         String result = getRestDocumentationMockMvc(
                 commonDocumentationConfiguration()
-                        .withAdditionalDefaults(
-                                pathParameters()))
+                        .withAdditionalDefaults(pathParameters()))
                 .perform(get("/user/{userId}", 100))
                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
         System.out.println(result);
@@ -260,11 +251,14 @@ public class UserDoc extends MockMvcBase {
 
 在 src\main\asciidoc 下面新建一个 index.adoc 文件，并添加如下内容
 ```
+= Spring Rest Doc Test
+:toc: right
+:toclevels: 2
+
 [[resources-Test]]
-=== User
-
-include::{snippets}/user/auto-section.adoc[]
-
+== User
+include::{snippets}/user-doc/add-user/auto-section.adoc[]
+include::{snippets}/user-doc/get-user/auto-section.adoc[]
 ```
 
 运行下面命令打包并生成文档
@@ -276,5 +270,5 @@ gradle clean build asciidoctor
 
 项目路径/build/generated-docs/html5/index.html
 
-![document image](https://i.loli.net/2018/11/12/5be95d2c03539.jpg)
+![document image](https://i.loli.net/2018/11/13/5bea31b0d6f92.jpg)
 
