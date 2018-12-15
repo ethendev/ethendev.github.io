@@ -31,6 +31,27 @@ Java 8 中新增的 CompletableFuture 类实现了 Future 接口。Stream 和 Co
 CompletableFuture 和 Future 的关系就跟 Stream 和 Collection 的关系一样。
 
 
+CompletableFuture 类中有4个常用的静态方法：
+```
+public static <U> CompletableFuture<U> supplyAsync(Supplier<U> supplier) {
+    return asyncSupplyStage(ASYNC_POOL, supplier);
+}
+
+public static <U> CompletableFuture<U> supplyAsync(Supplier<U> supplier, Executor executor) {
+    return asyncSupplyStage(screenExecutor(executor), supplier);
+}
+
+public static CompletableFuture<Void> runAsync(Runnable runnable) {
+    return asyncRunStage(ASYNC_POOL, runnable);
+}
+
+public static CompletableFuture<Void> runAsync(Runnable runnable, Executor executor) {
+    return asyncRunStage(screenExecutor(executor), runnable);
+}
+```
+其中 supplyAsync 用于有返回值的任务，runAsync 则用于没有返回值的任务。Executor 参数用于指定执行异步任务的线程池。不指定则使用 ForkJoinPool.commonPool() 公共线程池， 它的运行状态不受 shutdown 或者 shutdownNow 的影响。
+
+
 为了展示 CompletableFuture的强大特性，我们创建一个名为“最佳价格查询器”的应用，它会查询多个在线商店，依据给定的产品或服务找出最低的价格。
 
 
