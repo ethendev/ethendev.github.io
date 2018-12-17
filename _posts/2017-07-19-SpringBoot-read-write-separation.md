@@ -1,7 +1,7 @@
 ---
 layout: post
-title: SpringBoot中数据源读写分离配置
-tags:  [SpringBoot, 读写分离, DB]
+title: SpringBoot中数据源读写分离配置(MyBatis)
+tags:  [SpringBoot, MySQL, MyBatis]
 categories: [SpringBoot]
 ---
 
